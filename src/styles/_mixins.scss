@@ -1,0 +1,21 @@
+@import "variables";
+
+@mixin button-styles($bg-color, $hover-color) {
+  background-color: $bg-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+@mixin input-styles {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid $border-color;
+}

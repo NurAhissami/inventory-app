@@ -1,0 +1,51 @@
+.top-sold-products {
+  width: 20%;
+  height: 250px;
+  background-color: $dark-color;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__title {
+    font-size: 14px;
+  }
+
+  &__text {
+    font-size: 35px;
+    font-weight: bold;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  &__list-wrapper {
+    padding: 5px 20px;
+  }
+
+  &__list {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+
+  &__list-title {
+    flex-grow: 1;
+  }
+
+  &__number {
+    background-color: $primary-color;
+    width: fit-content;
+    padding: 5px 20px;
+    width: 80px;
+    margin: auto;
+    border-radius: 20px;
+    text-align: right;
+    font-size: 15px;
+    font-weight: bold;
+    color: $dark-color;
+  }
+}

@@ -1,0 +1,118 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+
+@import "_total-sold";
+@import "_stock";
+@import "_top-sold-products";
+@import "_product-list";
+
+.app {
+  width: 100%;
+  height: 100%;
+  background-color: $grey-color;
+  padding: 50px;
+}
+
+.inventory-list__title {
+  margin-bottom: 20px;
+  font-weight: lighter;
+}
+
+.inventory-list__boxes {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.product-list__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: rgba(221, 221, 221, 0.7);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  z-index: 0;
+}
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.container::before {
+  width: 300px;
+  height: 300px;
+  background: #ff934f;
+  top: -50px;
+  left: -70px;
+}
+
+.container::after {
+  width: 300px;
+  height: 300px;
+  background: #f5ed31;
+  top: -100px;
+  left: 100px;
+}
+
+.app__main-content {
+  position: relative;
+  z-index: 1;
+  margin-left: 50px;
+}
+
+.sidebar {
+  width: 100px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: grey;
+}
+
+.icon-link {
+  padding: 20px;
+}
