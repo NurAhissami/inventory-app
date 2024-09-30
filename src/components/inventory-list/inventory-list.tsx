@@ -16,11 +16,16 @@ import { TopSoldProducts } from "../top-sold-products";
 import {
   FaSearch,
   FaSort,
+  FaDollarSign,
+  FaBox,
+  FaBoxOpen,
   FaSortAlphaDown,
-  FaSortAlphaUp,
-  FaSortAmountDown,
-  FaSortAmountUp,
+  FaSortAlphaDownAlt,
+  FaSortNumericDown,
+  FaSortNumericDownAlt
+
 } from "react-icons/fa";
+import { Card } from "../card";
 
 Modal.setAppElement("#root");
 
@@ -80,25 +85,12 @@ export const InventoryList: React.FC = () => {
     setSortDirection(direction);
 
     let sortedProducts = [...filteredProducts];
-    if (type === "name") {
+    if (type === "Price") {
       sortedProducts.sort((a, b) =>
-        direction === "asc"
-          ? a.name.localeCompare(b.name)
-          : b.name.localeCompare(a.name)
+        direction === "low to high" ? a.price - b.price : b.price - a.price
       );
-    } else if (type === "price") {
-      sortedProducts.sort((a, b) =>
-        direction === "asc" ? a.price - b.price : b.price - a.price
-      );
-    } else if (type === "stock") {
-      sortedProducts.sort((a, b) =>
-        direction === "asc" ? a.stock - b.stock : b.stock - a.stock
-      );
-    } else if (type === "sold") {
-      sortedProducts.sort((a, b) =>
-        direction === "asc" ? a.sold - b.sold : b.sold - a.sold
-      );
-    }
+    } 
+    
     setFilteredProducts(sortedProducts);
   };
 
@@ -200,17 +192,28 @@ export const InventoryList: React.FC = () => {
     <div className="inventory-list">
       <h1 className="inventory-list__title">Inventory</h1>
       <div className="inventory-list__boxes">
-        <TotalSold totalSoldPrice={totalSoldPrice} />
-        <Stock
-          totalStock={totalStock}
-          outOfStockCount={outOfStockCount}
-          handleToggleOutOfStock={handleToggleOutOfStock}
-          showOutOfStock={showOutOfStock}
-          outOfStockProducts={outOfStockProducts}
+        <Card
+          title="Total paid orders"
+          icon={<FaDollarSign />}
+          value={`$${totalSoldPrice?.toFixed(2)}`}
+          backgroundColor="#f5ed31" 
         />
-        {topSoldProducts.length > 0 && (
+        <Card
+          title="Stock"
+          icon={<FaBox />}
+          value={`${totalStock}`}
+          backgroundColor="#ff934f" 
+        />
+        <Card
+          title="Out of stock"
+          icon={<FaBoxOpen />}
+          value={`${outOfStockCount}`}
+          backgroundColor="#ff4747" 
+        />
+      
+        {/* {topSoldProducts.length > 0 && (
           <TopSoldProducts topSoldProducts={topSoldProducts} />
-        )}
+        )} */}
       </div>
       <div className="inventory-list__controls">
         <div className="inventory-list__search">
@@ -230,29 +233,14 @@ export const InventoryList: React.FC = () => {
             <FaSort />
           </button>
           <div className="inventory-list__sort-menu">
-            <button onClick={() => handleSortBy("name", "asc")}>
-              Name asc
+        
+            <button onClick={() => handleSortBy("Price", "low to high")}>
+            Price (low to high)
+
             </button>
-            <button onClick={() => handleSortBy("name", "desc")}>
-              Name desc
-            </button>
-            <button onClick={() => handleSortBy("price", "asc")}>
-              price asc
-            </button>
-            <button onClick={() => handleSortBy("price", "desc")}>
-              price desc
-            </button>
-            <button onClick={() => handleSortBy("stock", "asc")}>
-              Stock asc
-            </button>
-            <button onClick={() => handleSortBy("stock", "desc")}>
-              Stock desc
-            </button>
-            <button onClick={() => handleSortBy("sold", "asc")}>
-              sold asc
-            </button>
-            <button onClick={() => handleSortBy("sold", "desc")}>
-              sold desc
+            <button onClick={() => handleSortBy("Price", "high to low")}>
+            Price (high to low)
+
             </button>
           </div>
         </div>
